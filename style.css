@@ -1,0 +1,404 @@
+@import url('https://fonts.googleapis.com/css2?family=Story+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Honk&display=swap');
+
+/* ---------- RESET ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  background: #000;
+  
+}
+/* ---------- index.html ---------- */
+.titulo1
+{color: rgba(24, 234, 238, 0.837);
+  font-size: 50pt;
+  margin-bottom: 20px;
+  font-family: "Story Script", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  filter: drop-shadow(0 0 8px rgba(7, 220, 248, 0.6));
+
+}
+.paragraph1
+{color: rgb(238, 255, 252);
+  font-size: 18pt;
+  margin-bottom: 30px;
+  width: 50%;
+  font-family: "Anton", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+ 
+}
+
+
+/* ---------- NAVBAR ---------- */
+#navbar {
+  background-color: #000000b0;
+  position: fixed;
+  top: -50px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  transition: top 0.3s;
+  z-index: 1000;
+}
+
+#navbar a {
+  color: #f2f2f2;
+  padding: 15px 20px;
+  text-align: center;
+  text-decoration: none;
+}
+
+#navbar a:hover {
+  background-color: #ddd;
+  color: black;
+
+}
+
+/* ---------- SEÇÕES ---------- */
+section {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+/* ---------- SEÇÃO 1 (VÍDEO DE FUNDO) ---------- */
+#secao1 {
+  position: relative;
+  color: white;
+  overflow: hidden;
+  background-color: black;
+}
+
+#secao1 .video-bg {
+  position: absolute;
+  inset: 0; /* garante que ocupe toda a seção */
+  /* z-index: -1; */
+  overflow: hidden;
+}
+
+#secao1 .video-bg video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* ajusta o vídeo ao tamanho visível */
+}
+
+#secao1::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.073); /* escurece o vídeo para legibilidade */
+  z-index: 0;
+}
+
+#secao1 .capa {
+  position: absolute;
+  display: flex;
+  z-index: 1;
+  top: 350px;
+  /* max-width: 70%; */
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+ 
+}
+
+.titulo {
+  color: rgba(24, 234, 238, 0.837);
+  font-size: 50pt;
+  margin-bottom: 20px;
+  font-family: "Story Script", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  filter: drop-shadow(0 0 8px rgba(7, 220, 248, 0.6));
+}
+
+.paragraph {
+  color: rgb(238, 255, 252);
+  font-size: 18pt;
+  margin-bottom: 30px;
+  width: 50%;
+  font-family: "Anton", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  filter: drop-shadow(0 0 8px rgb(4, 226, 255));
+}
+
+/* ---------- BOTÃO ---------- */
+.volta {
+  background-color: #000000b0;
+  color: white;
+  padding: 10px 25px;
+  border-radius: 10px;
+  border: 2px solid #008CBA;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.volta:hover {
+  background-color: #008CBA;
+}
+
+/* ---------- SEÇÃO 2 (CARROSSEL) ---------- */
+#secao2 {
+  background-color: #eee2e2;
+  color: #000;
+  flex-direction: column;
+  padding-top: 60px;
+}
+.carousel {
+  position: relative;
+  width: 80%;
+  max-width: 900px;
+  height: 500px;
+  margin: 40px auto;
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  background: #000;
+}
+
+.video-slide {
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+
+.video-slide.active {
+  display: block;
+}
+
+.video-slide video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+}
+.titulo2-gif {
+  display: flex;              /* coloca tudo na mesma linha */
+  align-items: center;        /* centraliza verticalmente */
+  justify-content: center;    /* centraliza horizontalmente */
+  gap: 12px;                  /* espaço entre o gif e o texto */
+  font-size: 28px;            /* tamanho do texto */
+  font-weight: bold;          /* texto em negrito */
+  color: #000;                /* cor do texto */
+}
+
+.icone-gif {
+  width: 40px;                /* tamanho do gif */
+  height: auto;               /* mantém proporção */
+}
+
+/* Controles do carrossel */
+.carousel-controls {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.botoes {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.botoes button {
+  background: #0a74da;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 16px;
+}
+
+.botoes button:hover {
+  background: #095ab5;
+}
+
+
+
+/*________________________________________________________________________*/
+
+/* ===== SEÇÃO 3 ===== */
+#secao3 {
+  position: relative;
+    background-color: #0a0a0f; /* Preto azulado profundo */
+    padding: 60px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* deixa a seção mais imersiva */
+}
+.texto{
+  color: rgb(238, 255, 252);
+  font-size: 18pt;
+  margin-bottom: 30px;
+  width: 50%;
+  font-family: "Anton", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+/* ===== CONTAINER DO QUIZ ===== */
+.quiz-container {
+    background: linear-gradient(145deg, #0d0d14, #11111a);
+    padding: 40px 50px;
+    border-radius: 15px;
+    box-shadow: 0 0 25px rgba(0, 170, 255, 0.2);
+    width: 85%;
+    max-width: 700px;
+    text-align: center;
+    border: 1px solid rgba(0, 170, 255, 0.2);
+}
+
+/* ===== PERGUNTA ===== */
+.question {
+    font-size: 1.6em; /* aumenta o tamanho da pergunta */
+    margin-bottom: 30px;
+    color: #00aaff;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 8px rgba(0, 170, 255, 0.4);
+}
+
+/* ===== BOTÕES DE OPÇÃO ===== */
+.options-container button {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 12px;
+    border: 1px solid rgba(0, 170, 255, 0.3);
+    background-color: #1a1a25;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
+    color: #e0e0e0;
+    transition: all 0.3s ease;
+}
+
+.options-container button:hover {
+    background-color: #0d447a;
+    color: white;
+    box-shadow: 0 0 10px rgba(0, 170, 255, 0.5);
+}
+
+/* ===== ESTILO DE FEEDBACK ===== */
+.options-container button.correct {
+    background-color: #0f7a2f; /* verde escuro elegante */
+    color: white;
+    border-color: #00ff88;
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.4);
+}
+
+.options-container button.incorrect {
+    background-color: #7a0f0f;
+    color: white;
+    border-color: #ff4444;
+    box-shadow: 0 0 15px rgba(255, 68, 68, 0.4);
+}
+
+/* ===== BOTÃO DE PRÓXIMA ===== */
+#next-button {
+    display: none;
+    margin-top: 25px;
+    padding: 12px 25px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
+    letter-spacing: 0.5px;
+    transition: all 0.3s;
+}
+
+#next-button:hover {
+    background-color: #00aaff;
+    box-shadow: 0 0 15px rgba(0, 170, 255, 0.6);
+}
+
+/* ===== RESULTADO FINAL ===== */
+#result-container {
+    display: none;
+    margin-top: 30px;
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #00d9ff;
+    text-shadow: 0 0 10px rgba(0, 170, 255, 0.4);
+}
+
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 700px) {
+    .quiz-container {
+        width: 90%;
+        padding: 25px;
+    }
+
+    .question {
+        font-size: 1.3em;
+    }
+
+    .options-container button {
+        font-size: 1em;
+        padding: 12px;
+    }
+}
+
+/* ===== GATINHO DE FUNDO ===== */
+.cat-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0; /* atrás do quiz */
+}
+
+.cat-background img {
+    position: absolute;
+    bottom: 50px;
+    left: -200px;
+    width: 300px;
+    animation: catWalk 20s linear infinite, catSize 5s ease-in-out infinite alternate;
+    opacity: 0.7;
+    filter: drop-shadow(0 0 8px rgba(0, 200, 255, 0.6));
+    
+}
+
+/* Animação para o gato atravessar a tela */
+@keyframes catWalk {
+    0% {
+        left: -200px;
+        transform: scaleX(1);
+    }
+    49% {
+        left: calc(100% + 200px);
+        transform: scaleX(1);
+    }
+    50% {
+        left: calc(100% + 200px);
+        transform: scaleX(-1); /* vira o gato */
+    }
+    100% {
+        left: -200px;
+        transform: scaleX(-1);
+    }
+}
