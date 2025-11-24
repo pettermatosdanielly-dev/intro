@@ -161,22 +161,33 @@ section {
   background: #000;
 }
 
+/* --- IMPORTANTE: remover display:none --- */
 .video-slide {
-  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
+  opacity: 0;
+  pointer-events: none;  /* evita clicar no vídeo invisível */
+  transition: opacity 0.5s ease;
 }
 
+/* --- Apenas o slide ativo aparece --- */
 .video-slide.active {
-  display: block;
+  opacity: 1;
+  pointer-events: auto;
+  position: relative;
 }
 
+/* Vídeo responsivo */
 .video-slide video {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 15px;
 }
+
 
 .titulo2-gif {
   display: flex;
@@ -651,4 +662,5 @@ section {
     }
 
 }
+
 
