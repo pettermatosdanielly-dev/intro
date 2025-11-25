@@ -97,119 +97,7 @@ function stopAllVideos() {
 
 </script>
      <script>
-// ---- PAUSAR um vídeo dentro de um iframe do YouTube ----
-function pauseIframeVideo(iframes) {
-  iframes.contentWindow.postMessage(
-    JSON.stringify({
-      event: "command",
-      func: "pauseVideo",
-      args: []
-    }),
-    "*"
-  );
-}
-
-// ---- PAUSAR TODOS os vídeos ----
-function pauseAllVideos() {
-  document.querySelectorAll("iframes").forEach(iframes => {
-    pauseIframeVideo(iframes);
-  });
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  const slides = document.querySelectorAll(".video-slide");
-  const prevBtn = document.getElementById("prev");
-  const nextBtn = document.getElementById("next");
-
-  let current = 0;
-
-  function showSlide(index) {
-    // Pausa todos os vídeos sempre que trocar
-    pauseAllVideos();
-
-    slides[current].classList.remove("active");
-    slides[index].classList.add("active");
-
-    current = index;
-  }
-
-  // Botão próximo
-  nextBtn.addEventListener("click", () => {
-    let next = (current + 1) % slides.length;
-    showSlide(next);
-  });
-
-  // Botão anterior
-  prevBtn.addEventListener("click", () => {
-    let prev = (current - 1 + slides.length) % slides.length;
-    showSlide(prev);
-  });
-});
-
-// ---- QUANDO SAIR DA PÁGINA: pausa todos os vídeos ----
-window.addEventListener("beforeunload", pauseAllVideos);
-document.addEventListener("visibilitychange", () => {
-  if (document.hidden) pauseAllVideos();
-});
-       <script>
-// ---- PAUSAR um vídeo dentro de um iframe do YouTube ----
-function pauseIframeVideo(iframe) {
-  iframe.contentWindow.postMessage(
-    JSON.stringify({
-      event: "command",
-      func: "pauseVideo",
-      args: []
-    }),
-    "*"
-  );
-}
-
-// ---- PAUSAR TODOS os vídeos ----
-function pauseAllVideos() {
-  document.querySelectorAll("iframe").forEach(iframe => {
-    pauseIframeVideo(iframe);
-  });
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  const slides = document.querySelectorAll(".video-slide");
-  const prevBtn = document.getElementById("prev");
-  const nextBtn = document.getElementById("next");
-
-  let current = 0;
-
-  function showSlide(index) {
-    pauseAllVideos(); // PAUSA antes da troca
-
-    slides[current].classList.remove("active");
-    slides[index].classList.add("active");
-
-    current = index;
-  }
-
-  nextBtn.addEventListener("click", () => {
-    showSlide((current + 1) % slides.length);
-  });
-
-  prevBtn.addEventListener("click", () => {
-    showSlide((current - 1 + slides.length) % slides.length);
-  });
-});
-
-// ---- QUANDO SAIR OU OCULTAR A PÁGINA ----
-window.addEventListener("beforeunload", pauseAllVideos);
-document.addEventListener("visibilitychange", () => {
-  if (document.hidden) pauseAllVideos();
-});
-</script>
-
-
-     
-
-     
-
-   
-    </div>
+      </div>
     <div class="carousel-controls">
       <button class="volta w3-button w3-black w3-border w3-border-blue w3-round-large" id="prev">&#10094;</button>
       <button class="volta w3-button w3-black w3-border w3-border-blue w3-round-large" id="next">&#10095;</button>
@@ -223,33 +111,6 @@ document.addEventListener("DOMContentLoaded", () => {
   let current = 0;
 
 
-
-</script>
-    <div class="carousel">
-  <div class="video-slide active">
-    <iframe 
-      src="https://www.youtube.com/embed/VIDEO1?enablejsapi=1"
-      frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-      allowfullscreen>
-    </iframe>
-  </div>
-
-  <div class="video-slide">
-    <iframe 
-      src="https://www.youtube.com/embed/VIDEO2?enablejsapi=1"
-      frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-      allowfullscreen>
-    </iframe>
-  </div>
-
-  <div class="video-slide">
-    <iframe 
-      src="https://www.youtube.com/embed/VIDEO3?enablejsapi=1"
-      frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-      allowfullscreen>
-    </iframe>
-  </div>
-</div>
 
 <div class="carousel-controls">
   <button id="prev">&#10094;</button>
@@ -534,6 +395,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+
 
 
 
