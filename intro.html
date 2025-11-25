@@ -86,15 +86,15 @@
     <iframe src="https://www.youtube.com/embed/WYeyITar2gE?list=PLXjjjTRjY4dcTcInfzwIgSU1HPE-H23z-" title="O que aprendemos de SO" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
   </div>
      <script>
-  document.addEventListener("visibilitychange", function () {
-    // pega todos os vídeos do carrossel
-    const videos = document.querySelectorAll("video");
-
-    if (document.hidden) {
-      // se o usuário sair da aba → pausa todos os vídeos
-      videos.forEach(video => video.pause());
-    }
+function stopAllVideos() {
+  const iframes = document.querySelectorAll("iframe");
+  iframes.forEach((iframe) => {
+    const src = iframe.src;
+    iframe.src = "";       // limpa o vídeo
+    iframe.src = src;      // recarrega parado
   });
+}
+
 </script>
 
      
@@ -433,3 +433,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+
