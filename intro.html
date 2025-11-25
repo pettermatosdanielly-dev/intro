@@ -111,7 +111,7 @@ function pauseIframeVideo(iframe) {
 
 // ---- PAUSAR TODOS os vídeos ----
 function pauseAllVideos() {
-  document.querySelectorAll("iframe").forEach(iframe => {
+  document.querySelectorAll("iframes").forEach(iframes => {
     pauseIframeVideo(iframe);
   });
 }
@@ -496,6 +496,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+
 
 
 
