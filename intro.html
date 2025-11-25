@@ -88,18 +88,18 @@
      <script>
 function stopAllVideos() {
   const iframes = document.querySelectorAll("iframe");
-  iframes.forEach((iframe) => {
-    const src = iframe.src;
-    iframe.src = "";       // limpa o vídeo
-    iframe.src = src;      // recarrega parado
+  iframes.forEach((iframes) => {
+    const src = iframes.src;
+    iframes.src = "";       // limpa o vídeo
+    iframes.src = src;      // recarrega parado
   });
 }
 
 </script>
      <script>
 // ---- PAUSAR um vídeo dentro de um iframe do YouTube ----
-function pauseIframeVideo(iframe) {
-  iframe.contentWindow.postMessage(
+function pauseIframeVideo(iframes) {
+  iframes.contentWindow.postMessage(
     JSON.stringify({
       event: "command",
       func: "pauseVideo",
@@ -112,7 +112,7 @@ function pauseIframeVideo(iframe) {
 // ---- PAUSAR TODOS os vídeos ----
 function pauseAllVideos() {
   document.querySelectorAll("iframes").forEach(iframes => {
-    pauseIframeVideo(iframe);
+    pauseIframeVideo(iframes);
   });
 }
 
@@ -151,6 +151,58 @@ window.addEventListener("beforeunload", pauseAllVideos);
 document.addEventListener("visibilitychange", () => {
   if (document.hidden) pauseAllVideos();
 });
+       <script>
+// ---- PAUSAR um vídeo dentro de um iframe do YouTube ----
+function pauseIframeVideo(iframe) {
+  iframe.contentWindow.postMessage(
+    JSON.stringify({
+      event: "command",
+      func: "pauseVideo",
+      args: []
+    }),
+    "*"
+  );
+}
+
+// ---- PAUSAR TODOS os vídeos ----
+function pauseAllVideos() {
+  document.querySelectorAll("iframe").forEach(iframe => {
+    pauseIframeVideo(iframe);
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const slides = document.querySelectorAll(".video-slide");
+  const prevBtn = document.getElementById("prev");
+  const nextBtn = document.getElementById("next");
+
+  let current = 0;
+
+  function showSlide(index) {
+    pauseAllVideos(); // PAUSA antes da troca
+
+    slides[current].classList.remove("active");
+    slides[index].classList.add("active");
+
+    current = index;
+  }
+
+  nextBtn.addEventListener("click", () => {
+    showSlide((current + 1) % slides.length);
+  });
+
+  prevBtn.addEventListener("click", () => {
+    showSlide((current - 1 + slides.length) % slides.length);
+  });
+});
+
+// ---- QUANDO SAIR OU OCULTAR A PÁGINA ----
+window.addEventListener("beforeunload", pauseAllVideos);
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) pauseAllVideos();
+});
+</script>
+
 </script>
 
      
@@ -171,53 +223,40 @@ document.addEventListener("DOMContentLoaded", () => {
   const nextBtn = document.getElementById("next");
   let current = 0;
 
-  // Garante que só o primeiro comece ativo
-  slides.forEach((slide, i) => slide.classList.toggle("active", i === current));
 
-  function showSlide(index) {
-    // Pausa e reseta todos os vídeos
-    iframes.forEach(v => {
-      v.pause();
-      v.currentTime = 0;
-    });
-
-    // Remove classe active de todos
-    slides.forEach(slide => slide.classList.remove("active"));
-
-    // Define novo ativo
-    slides[index].classList.add("active");
-
-    // Atualiza índice atual
-    current = index;
-
-    // Toca o vídeo novo
-    const currentVideo = slides[index].querySelector("video");
-    if (currentVideo) {
-      const playPromise = currentVideo.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(() => {
-          console.warn("Autoplay bloqueado, o usuário precisa clicar em play.");
-        });
-      }
-    }
-  }
-
-  // Botão próximo
-  nextBtn.addEventListener("click", () => {
-    const next = (current + 1) % slides.length;
-    showSlide(next);
-  });
-
-  // Botão anterior
-  prevBtn.addEventListener("click", () => {
-    const prev = (current - 1 + slides.length) % slides.length;
-    showSlide(prev);
-  });
-});
-
-   
 
 </script>
+    <div class="carousel">
+  <div class="video-slide active">
+    <iframe 
+      src="https://www.youtube.com/embed/VIDEO1?enablejsapi=1"
+      frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <div class="video-slide">
+    <iframe 
+      src="https://www.youtube.com/embed/VIDEO2?enablejsapi=1"
+      frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <div class="video-slide">
+    <iframe 
+      src="https://www.youtube.com/embed/VIDEO3?enablejsapi=1"
+      frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+      allowfullscreen>
+    </iframe>
+  </div>
+</div>
+
+<div class="carousel-controls">
+  <button id="prev">&#10094;</button>
+  <button id="next">&#10095;</button>
+</div>
+
 
 
     
@@ -496,6 +535,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+
 
 
 
