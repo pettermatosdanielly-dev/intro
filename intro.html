@@ -118,7 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function showSlide(index) {
     // Pausa e reseta todos os vídeos
-    videos.forEach(v => {
+    iframes.forEach(v => {
       v.pause();
       v.currentTime = 0;
     });
@@ -433,4 +433,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+
 
