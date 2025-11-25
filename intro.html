@@ -55,7 +55,7 @@
   </div>
      
   <div class="video-slide">
-    <iframe id="vid1" src="https://www.youtube.com/embed/qMzsplwIiC4?list=PLXjjjTRjY4dcTcInfzwIgSU1HPE-H23z-" title="O que é Hardware" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <iframe  src="https://www.youtube.com/embed/qMzsplwIiC4?list=PLXjjjTRjY4dcTcInfzwIgSU1HPE-H23z-" title="O que é Hardware" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
   </div>
 
   <div class="video-slide">
@@ -96,6 +96,63 @@ function stopAllVideos() {
 }
 
 </script>
+     <script>
+// ---- PAUSAR um vídeo dentro de um iframe do YouTube ----
+function pauseIframeVideo(iframe) {
+  iframe.contentWindow.postMessage(
+    JSON.stringify({
+      event: "command",
+      func: "pauseVideo",
+      args: []
+    }),
+    "*"
+  );
+}
+
+// ---- PAUSAR TODOS os vídeos ----
+function pauseAllVideos() {
+  document.querySelectorAll("iframe").forEach(iframe => {
+    pauseIframeVideo(iframe);
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const slides = document.querySelectorAll(".video-slide");
+  const prevBtn = document.getElementById("prev");
+  const nextBtn = document.getElementById("next");
+
+  let current = 0;
+
+  function showSlide(index) {
+    // Pausa todos os vídeos sempre que trocar
+    pauseAllVideos();
+
+    slides[current].classList.remove("active");
+    slides[index].classList.add("active");
+
+    current = index;
+  }
+
+  // Botão próximo
+  nextBtn.addEventListener("click", () => {
+    let next = (current + 1) % slides.length;
+    showSlide(next);
+  });
+
+  // Botão anterior
+  prevBtn.addEventListener("click", () => {
+    let prev = (current - 1 + slides.length) % slides.length;
+    showSlide(prev);
+  });
+});
+
+// ---- QUANDO SAIR DA PÁGINA: pausa todos os vídeos ----
+window.addEventListener("beforeunload", pauseAllVideos);
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) pauseAllVideos();
+});
+</script>
+
      
 
      
@@ -439,6 +496,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+
 
 
 
