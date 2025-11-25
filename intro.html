@@ -96,6 +96,8 @@ function stopAllVideos() {
 }
 
 </script>
+     
+iframes.addEventListener("beforeunload", stopAllVideos);
 
      
    
@@ -433,5 +435,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+
 
 
